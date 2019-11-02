@@ -1,11 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom'
+import { LandingPage } from './components/Landing/LandingPage.js'
+import { SignupForm } from './components/Landing/SignupForm.js'
+import { LoginForm } from './components/Landing/LoginForm.js'
+import  {UserHomepage } from './components/UserHomepage/UserHomepage.js'
+
 
 function App() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      <BrowserRouter>
+      <Route exact path="/" component={LandingPage}/>
+      <Route exact path="/signup" component={SignupForm}/>
+      <Route exact path="/login" component={LoginForm}/>
+      <Route exact path='/homepage' component={UserHomepage} />
+      </BrowserRouter>
     </div>
   );
 }
