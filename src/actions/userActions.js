@@ -1,5 +1,4 @@
-import {FETCH_USERS, SIGN_UP, LOGGED_IN} from './types'
-
+import {FETCH_USERS, SIGN_UP, LOGGED_IN, LOGIN_ERROR, SET_USERNAME, SET_EMAIL, SET_PASSWORD, SET_C_PASSWORD, SET_L_EMAIL, SET_L_PASSWORD} from './types'
 export const fetchUsers = () => dispatch => {
        fetch('http://localhost:3000/users')
        .then(res => res.json())
@@ -33,8 +32,63 @@ export const loginUser = (userData) => dispatch => {
         body: JSON.stringify({userData})
         })
         .then(res => res.json())
-        .then(user => dispatch({
-            type: LOGGED_IN,
-            payload: user
-        }))
+        .then(user => {
+            if(user.success === true) {
+                dispatch({
+                    type: LOGGED_IN,
+                    payload: user
+                })
+            } else {
+                dispatch({
+                    type: LOGIN_ERROR
+                })
+            }
+        })
+}
+
+export const setUsername = (e) => dispatch => {
+    dispatch({
+        type: SET_USERNAME,
+        payload: e.target.value
+    })
+}
+
+export const setEmail = (e) => dispatch => {
+    dispatch({
+        type: SET_EMAIL,
+        payload: e.target.value
+    })
+}
+
+export const setPassword = (e) => dispatch => {
+    dispatch({
+        type: SET_PASSWORD,
+        payload: e.target.value
+    })
+}
+
+export const setConfPassword = (e) => dispatch => {
+    dispatch({
+        type: SET_C_PASSWORD,
+        payload: e.target.value
+    })
+}
+
+export const setLoginEmail = (e) => dispatch => {
+    dispatch({
+        type: SET_L_EMAIL,
+        payload: e.target.value
+    })
+}
+export const setLoginPassword = (e) => dispatch => {
+    dispatch({
+        type: SET_L_PASSWORD,
+        payload: e.target.value
+    })
+}
+
+export const loginError = (e) => dispatch => {
+    dispatch({
+        type: LOGIN_ERROR
+    })
 }

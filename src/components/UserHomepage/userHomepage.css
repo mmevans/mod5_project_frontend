@@ -1,0 +1,43 @@
+
+
+.userHomeContainer {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1fr 0.5fr;
+    grid-template-areas: "." "." ".";
+}
+
+.middle {
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
+
+.createLobby {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.createLobby h3 {
+    position: absolute;
+    bottom: 0px;
+    left: 350px;
+}
+
+.createCollection {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+
+.createCollection h3 {
+    position: absolute;
+    bottom: 0px;
+    right: 350px;
+}

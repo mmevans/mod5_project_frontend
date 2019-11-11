@@ -1,29 +1,40 @@
 import {createStore, compose, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers/index'
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
 
-
-function saveToLocalStorage(state) {
-    try {
-        localStorage.setItem('token', state.signup.user.token)
-        localStorage.setItem('user_id', state.signup.user.id)
-        localStorage.setItem('isLoggedIn', state.signup.IsLoggedIn)
-    } catch(e) {
-        console.log(e)
-    }
-}
 
 const middleware = [thunk];
 
+const persistConfig = {
+    key: 'root',
+    storage: storage,
+    whitelist: [
+      'gameReducer',
+      'landing'
+    ],
+    blacklist: [
+        'userHome',
+        'joinRoom'
+    ]
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = createStore(
-    rootReducer, 
+    persistedReducer, 
     compose(
     applyMiddleware(...middleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
 
+//Middleware: Redux Persist Persiter
+let persistor = persistStore(store)
 
-store.subscribe(() => saveToLocalStorage(store.getState()))
-export default store;
+
+
+export {
+    store,
+    persistor
+}

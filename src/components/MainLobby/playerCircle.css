@@ -1,0 +1,93 @@
+      
+/* CSS code for the circle of constellations */
+.circle-container {
+    position: relative;
+    width: 20em;
+    height: 30em;
+    border-radius: 50%;
+    padding: 0;
+    list-style: none;
+    margin: 5em auto 0;
+    /* border: solid 5px tomato; */
+   }
+   .circle-container > * {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -3em;
+    width: 10em;
+    height: 10em;
+   }
+   .circle-container > *:nth-of-type(1) {
+    -webkit-transform: rotate(0deg) translate(20em) rotate(0deg);
+            transform: rotate(0deg) translate(20em) rotate(0deg);
+   }
+   .circle-container > *:nth-of-type(2) {
+    -webkit-transform: rotate(45deg) translate(20em) rotate(-45deg);
+            transform: rotate(45deg) translate(20em) rotate(-45deg);
+   }
+   .circle-container > *:nth-of-type(3) {
+    -webkit-transform: rotate(90deg) translate(20em) rotate(-90deg);
+            transform: rotate(90deg) translate(20em) rotate(-90deg);
+   }
+   .circle-container > *:nth-of-type(4) {
+    -webkit-transform: rotate(135deg) translate(20em) rotate(-135deg);
+            transform: rotate(135deg) translate(20em) rotate(-135deg);
+   }
+   .circle-container > *:nth-of-type(5) {
+    -webkit-transform: rotate(180deg) translate(20em) rotate(-180deg);
+            transform: rotate(180deg) translate(20em) rotate(-180deg);
+   }
+   .circle-container > *:nth-of-type(6) {
+    -webkit-transform: rotate(225deg) translate(20em) rotate(-225deg);
+            transform: rotate(225deg) translate(20em) rotate(-225deg);
+   }
+   .circle-container > *:nth-of-type(7) {
+    -webkit-transform: rotate(270deg) translate(20em) rotate(-270deg);
+            transform: rotate(270deg) translate(20em) rotate(-270deg);
+   }
+   .circle-container > *:nth-of-type(8) {
+    -webkit-transform: rotate(315deg) translate(20em) rotate(-315deg);
+            transform: rotate(315deg) translate(20em) rotate(-315deg);
+   }
+   /* .circle-container > *:nth-of-type(9) {
+    -webkit-transform: rotate(240deg) translate(20em) rotate(-240deg);
+            transform: rotate(240deg) translate(20em) rotate(-240deg);
+   } */
+   /* .circle-container > *:nth-of-type(10) {
+    -webkit-transform: rotate(270deg) translate(20em) rotate(-270deg);
+            transform: rotate(270deg) translate(20em) rotate(-270deg);
+   }
+   .circle-container > *:nth-of-type(11) {
+    -webkit-transform: rotate(300deg) translate(20em) rotate(-300deg);
+            transform: rotate(300deg) translate(20em) rotate(-300deg);
+   }
+   .circle-container > *:nth-of-type(12) {
+    -webkit-transform: rotate(330deg) translate(20em) rotate(-330deg);
+            transform: rotate(330deg) translate(20em) rotate(-330deg);
+   } */
+   .circle-container img {
+    display: block;
+    max-width: 100%;
+    border-radius: 50%;
+    -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+    /* border: solid 5px tomato; */
+    /* transition: .5s;
+    transform: scale(.9);
+    z-index: -1; */
+   }
+   .circle-container img:hover {
+    -webkit-filter: grayscale(0);
+            filter: grayscale(0) brightness(500%);
+    transform: scale(1.3)
+   }
+   /* .circle-container img:hover:before {
+     transform: scale(1.1)
+   } */
+   /* End of the circle code */
+
+   .playerInfo {
+    border-style: dotted;
+   }

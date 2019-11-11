@@ -1,23 +1,24 @@
-import {GO_TO_LOBBY, GENERATE_ROOM_ID} from '../actions/types'
+import { SET_ROOM, SET_NAME } from '../actions/types'
 
 const initialState = {
-    goToLobby: false,
+    name: '',
     room_id: ''
 }
 
-
-export default function userHomepageReducer(state = initialState, action) {
+export default function joinReducer(state = initialState, action) {
     switch(action.type) {
-        case GO_TO_LOBBY:
+        case SET_NAME: {
             return {
                 ...state,
-                goToLobby: true
+                name: action.payload
             }
-        case GENERATE_ROOM_ID:
+        }
+        case SET_ROOM: {
             return {
                 ...state,
                 room_id: action.payload
             }
+        }
         default:
             return {
                 ...state

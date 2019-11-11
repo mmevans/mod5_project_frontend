@@ -1,18 +1,35 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import './userHomepage.css'
+import {goToLobby, generateRoomID } from '../../actions/joinRoomActions'
+import {Redirect} from 'react-router-dom'
+import io from 'socket.io-client';
+import Timer from '../Timer/Timer'
 
 export const UserHomepage = (props) => {
+    const dispatch = useDispatch();
+    const lobby = useSelector(state => state.userHome.goToLobby)
+    const room_id = useSelector(state => state.userHome.room_id)
+    const username = useSelector(state => state.landing.user.username)
 
-    useEffect(() => {
+    const handleChange = () => {
+        dispatch(generateRoomID(5))
+        dispatch(goToLobby())
+    }
 
-    })
+    if(lobby === true) {
+        return  <Redirect push to={`/main-lobby?name=${username}&room=${room_id}`}/>
+    }
     return(
-        <div>
-        <h1>This the users homepage</h1>
-        
-        <h3>Go To Quiplash Lobby.</h3>
-
-        <h3>Create your own collection</h3>
+        <div className='userHomeContainer'>
+            <div className='middle'>
+                <div className='createLobby'>
+                    <h3 onClick={() => handleChange()}>Create A Lobby Here!</h3>
+                </div>
+                <div className='createCollection'>
+                    <h3>Make your own Collection!</h3>
+                </div>
+            </div>
         </div>
     )
 }
