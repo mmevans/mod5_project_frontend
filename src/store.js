@@ -4,7 +4,6 @@ import rootReducer from './reducers/index'
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 
-
 const middleware = [thunk];
 
 const persistConfig = {
@@ -21,11 +20,15 @@ const persistConfig = {
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+
 const store = createStore(
     persistedReducer, 
     compose(
     applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "undefined"
+      ? a => a
+      : window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
 

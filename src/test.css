@@ -1,0 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css?family=Bangers|Luckiest+Guy');
+
+.getReady {
+	background-color: #153b77;
+	min-height: 100vh;
+}
+
+.getReady h1 {
+  position: relative;
+  background-color: #153b77;
+  font-family: "Bangers";
+  text-align: center;
+  top: 200px;
+  font-size: 40px;
+  color: orange;
+}

@@ -1,8 +1,9 @@
 
 
 .userHomeContainer {
+    background-color: #153b77;
     display: grid;
-    height: 100vh;
+    height: 120vh;
     grid-template-columns: 1fr;
     grid-template-rows: 0.5fr 1fr 0.5fr;
     grid-template-areas: "." "." ".";
@@ -26,7 +27,7 @@
 .createLobby h3 {
     position: absolute;
     bottom: 0px;
-    left: 350px;
+    left: 360px;
 }
 
 .createCollection {
@@ -36,8 +37,14 @@
 }
 
 
-.createCollection h3 {
+.createCollection button {
     position: absolute;
-    bottom: 0px;
-    right: 350px;
+    bottom: 30px;
+    right: 300px;
+}
+
+.createLobby button {
+    position: absolute;
+    bottom: 30px;
+    right: 180px;
 }

@@ -71,6 +71,7 @@ export const LandingPage = (props) => {
     } else {
     return(
     <div>
+        <h1></h1>
         <div className="wrapper">
 			<div className="grid-container">
               <div className='signupform'>
@@ -94,7 +95,7 @@ export const LandingPage = (props) => {
 						    <input type="password" placeholder="Confirm Password" value={password_digest} onChange={(e) => dispatch(setConfPassword(e))}/>
                         </div>
                         <div className='signupSubmitButton'>
-                            <Button onClick={() => handleSignup()}>Sign Up</Button>
+                            <Button className='signupButtonOnForm' onClick={() => handleSignup()}>Sign Up</Button>
                         </div>
                         <div className='signupButtons'>
                             <div className="button-group">

@@ -1,20 +1,23 @@
 .app {
     text-align: center;
-    background-color: #282c34;
+    background-color: transparent;
     min-height: 10vh;
     width: 300px;
     position: absolute;
-    top: 0;
-    right: 0;
+    text-align: center;
+    top: 350px;
+    left: 570px;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: black;
+    z-index: 1;
   }
   
   .time {
     font-size: 3rem;
     padding: 2rem;
+    background-color: transparent;
   }
   
   .button {

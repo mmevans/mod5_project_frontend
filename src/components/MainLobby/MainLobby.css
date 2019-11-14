@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Luckiest+Guy');
+
+* {
+    background-color: #153b77;  
+}
+body {
+    min-height: 125vh;
+}
+.main-lobby-screen {
+    background-color: #153b77;
+    min-height: 125vh;
+}
+
+.startGameButton {
+    position: absolute;
+    top: 340px;
+    right: 450px;
+}
+
+.roomIDBox {
+    position:absolute;
+    background-color: #bbb;
+    top: 0px;
+    right: 0px; 
+    width: 200px;
+    height: 80px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.roomIDBox p {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #bbb;
+    color: white;
+    font-family: "Bangers";
+    font-size: 1.5em;
+
+}
+
+.waitingScreen {
+    min-height: 100vh;
+}
+
+.waitingScreen h1 {
+    position: relative;
+    bottom: -150px;
+    color: orange;
+    font-family: "Bangers";
+    font-size: 100px;
+    text-align: center;
+}
+
+.waitingScreen h1:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 2000ms infinite;      
+    animation: ellipsis steps(4,end) 2000ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0px;
+  }
+  
+  @keyframes ellipsis {
+    to {
+      width: 1.00em;    
+    }
+  }
+  
+  @-webkit-keyframes ellipsis {
+    to {
+      width: 1.00em;    
+    }
+  }

@@ -5,17 +5,11 @@ import './Timer.css'
 
 
 const Timer = () => {
-  // const [seconds, setSeconds] = useState(0);
-  // const [isActive, setIsActive] = useState(false);
 
   const dispatch = useDispatch();
   const isActive = useSelector(state => state.timer.isActive)
   const seconds = useSelector(state => state.timer.seconds)
 
-  // function reset() {
-  //   setSeconds(80);
-  //   dispatch(setIsActive(false)
-  // }
 
   useEffect(() => {
     let interval = null;

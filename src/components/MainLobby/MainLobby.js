@@ -1,17 +1,14 @@
-
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import queryString from 'query-string';
-import io from 'socket.io-client';
-import {getPlayersInRoom, startingGame, changePlayerView, generateQuestionsForRound} from '../../actions/gameActions'
+import {getPlayersInRoom, startingGame, changePlayerView, generateQuestions, saveQuestions} from '../../actions/gameActions'
 import PlayerContainer from './PlayerContainer'
 import {Button} from 'semantic-ui-react'
 import Game from '../Game/Game'
 import PlayerView from '../PlayerView/PlayerView'
+import socket from '../socket/socket'
+import './mainlobby.css'
 
-
-let socket;
-const ENDPOINT = 'localhost:3000'
 
 export const MainLobby = (props) => {
     const dispatch = useDispatch();
@@ -20,11 +17,10 @@ export const MainLobby = (props) => {
     const gameStarted = useSelector(state => state.game.gameStarted)
     const playerView = useSelector(state => state.game.playerView)
     const playersInRoom = useSelector(state => state.game.playersInRoom)
-    
+    const {name, room, lobby} = queryString.parse(props.location.search)
+
     useEffect(() => {
-        const {name, room} = queryString.parse(props.location.search)
-        socket = io(ENDPOINT)
-        if(goToLobby === true) {
+        if(goToLobby || lobby ) {
             socket.emit('create-game', {name, room}, () => {})
         } else {
             socket.emit('join', {name, room}, () => {
@@ -39,31 +35,37 @@ export const MainLobby = (props) => {
     })
 
     useEffect(() => {
-        socket.on('change-player-view', (callback) => {
+        socket.on('change-player-view', (questions) => {
+            dispatch(saveQuestions)
             dispatch(changePlayerView())
+            dispatch(saveQuestions(questions))
         })
-    })
+    }, [])
 
     const startGame = () => {
-        socket = io(ENDPOINT);
         const {room} = queryString.parse(props.location.search)
         dispatch(startingGame())
-        dispatch(generateQuestionsForRound(room))
-        socket.emit('game-started', room, () => {})
+        dispatch(generateQuestions(room))
     } 
   
 
-    if(goToLobby === true && gameStarted === false) {
+    if((goToLobby || lobby)  && gameStarted === false) {
         return (
             <div>
                 <div className='main-lobby-screen'>
-                    <p> Users currently in the lobby Max 8</p>
+                    <div className='roomIDBox'>
+                        <p> Room ID: {room}</p>
+                        </div>
                     <PlayerContainer players={playerNames}/>
-                </div>
-            <div>
-                <Button onClick={() => startGame()}>Start Game</Button>
+                    <div>
+                        <div className='startGameButton'>
+                            <Button size='massive' onClick={() => startGame()}>Start Game</Button>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                    </div>
             </div>
-        </div>
     )
     }   else if (gameStarted === true) {
         return (
@@ -74,12 +76,12 @@ export const MainLobby = (props) => {
         )
     } else if (playerView === true) {
         return (
-            <PlayerView players = {playersInRoom}/>
+            <PlayerView players = {playersInRoom} location={props.location}/>
         )
     }
         return (
-            <div>
-                <p>Waiting To Start The Game!</p>
+            <div class='waitingScreen'>
+                <h1>Waiting For Other Players</h1>
             </div>
         )
     }

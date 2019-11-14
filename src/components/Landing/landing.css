@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Luckiest+Guy');
+
 .wrapper {
-    background: linear-gradient(90deg, #a1c4fd ,  #c2e9fb);
+    background-color: #153b77;
 	min-height: 1000px;
 }
 .grid-container {
@@ -9,13 +11,14 @@
     grid-template-areas: ". . ." ". . ." ". . .";
 }
 .signupform {
+    background-color: #265399 !important;
     width: 400px;
     grid-column: 2;
     grid-row: 2;
 }
 
 .form {
-	background-color: white;
+	background-color: #265399 !important;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 	min-height: 400px;
 	border-radius: 5px 5px 10px 10px;
@@ -50,6 +53,7 @@
 .loginSubmitButton {
     grid-column: 1;
     grid-row: 5;
+    text-align:center;
 }
 
 .loginPassword {
@@ -93,6 +97,7 @@
 .signupSubmitButton {
     grid-column: 1;
     grid-row: 7;
+    text-align:center;
 }
 
 .signupButtons {
@@ -184,13 +189,13 @@
 }
 
 .avatar-wrapper {
-	background-color: #ffffff;
+	background-color: #bbb;
     width: 119px;
     height: 120px;
     position: absolute;
     top: -53px;
-    left: 40%;
-    border-radius: 50%;
+    left: 37%;
+    border-radius: 49%;
 	
 }
 
@@ -207,11 +212,11 @@
 }
 
 .avatar {
-    width: 112px;
-    height: 112px;
-    border-radius: 50px;
+    width: 115px;
+    height: 113px;
+    border-radius: 52px;
     position: absolute;
-    top: 6px;
+    top: 4px;
     left: 2%;
 }
 
@@ -221,7 +226,8 @@ button:focus {
 }
 
 .sign-up {
-	
+    background-color: #265399 !important;
+    border-radius: 5px;
 }
 
 .login {

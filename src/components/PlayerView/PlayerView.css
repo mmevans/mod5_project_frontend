@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css?family=Bangers|Luckiest+Guy');
+
+.voting-buttons {
+    display: grid
+}
+
+.playerQuestionForm {
+	background-color: transparent;
+	height: 50%;
+	border-radius: 5px;
+	background-color: rgb(221, 221, 221);
+	box-shadow: 5px 5px 60px 5px #00000073;
+}
+
+.playerQuestionForm h1 {
+	background-color: transparent;
+	text-align: center;
+	font-family: "Bangers"
+}
+
+.playerQuestionForm form {
+	min-height: 0px;
+}
+.playerQuestionForm form textarea {
+    min-height: 0px;
+    font-size: 16px;
+	font-family: 'Bangers'
+}
+
+.playerScreenFriend {
+    background-color: #153b77;
+    min-height: 110vh;
+}
+.playerScreenFriend img {
+	position: relative;
+	bottom: -60px;
+	background-color: #153b77;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Bangers|Luckiest+Guy');
+
+.playerViewPage {
+  background-color: #153b77;
+  min-height: 125vh;
+}
+
+.playerViewPage h1 {
+  position: relative;
+  background-color: #153b77;
+  font-family: "Bangers";
+  text-align: center;
+  top: 200px;
+  font-size: 40px;
+  color: orange;
+}
+
+.votingScreen {
+	background-color: #153b77;
+	min-height: 100vh;
+}
+
+.votingScreen h1 {
+	background-color: #153b77;
+	text-align: center;
+	font-family: "Bangers";
+	font-size: 50px;
+	color: orange;
+}
+
+.voting-buttons {
+	background-color: #153b77;
+}
+
+.answer0 {
+	position: relative;
+	left: 5px;
+	bottom: -90px;
+	margin-bottom: 30px;
+}
+.answer1 {
+	position: relative;
+	left: 5px;
+	top: 320px;
+}
+
+#votingOR {
+	background-color: transparent;
+	position: absolute;
+	font-size: 60px;
+	top: 280px;
+	left: 180px;
+}
+.waitingScreenInGame {
+    position: relative;
+    bottom: -150px;
+    color: orange;
+    font-family: "Bangers";
+    font-size: 100px;
+    text-align: center;
+}
+
+.waitingScreenInGame {
+    min-height: 100vh;
+}
+
+.waitingScreenInGame h1:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 2000ms infinite;      
+    animation: ellipsis steps(4,end) 2000ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0px;
+  }
+  
+  @keyframes ellipsis {
+    to {
+      width: 1.00em;    
+    }
+  }
+  
+  @-webkit-keyframes ellipsis {
+    to {
+      width: 1.00em;    
+    }
+  }

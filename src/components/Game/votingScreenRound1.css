@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Luckiest+Guy');
+.votingScreenRound1 {
+    background-color: #153b77;
+    min-height: 100vh;
+}
+
+.votingScreenRound1 h1 {
+    position: relative;
+    font-family: "Bangers";
+	  font-size: 46px;
+    color: orange;
+    text-align: center;
+}
+
+.answer1Round1 {
+    position: absolute;
+    font-family: 'Bangers';
+    color: orange;
+    left: 310px;
+    top: 210px;
+}
+
+.answer2Round1 {
+    position: absolute;
+    font-family: 'Bangers';
+    color: orange;
+    right: 310px;
+    top: 210px;
+}
+
+.roundWinner {
+    position: absolute;
+    left: 530px;
+    bottom: 50px;
+    font-family: 'Bangers';
+    font-size: 28px;
+    color: orange;
+}
+
+.nextRound {
+  background-color: transparent;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+
+.speech0 {
+    background-color:#fff;
+    border:solid 2px #000;
+    border-radius:12px;
+    display:inline-block;
+    margin:.5em;
+    padding: 7.0em 12.0em;
+    position: absolute;
+    left: 150px;
+    bottom: 250px;
+    font-family: "Bangers";
+
+  }
+
+  .speech0:before {
+    border:solid 12px transparent;
+    border-left:solid 12px #000;
+    border-top:solid 12px #000;
+    bottom:-24px;
+    content:"";
+    height:0;
+    left:24px;
+    position:absolute;
+    transform:skew(-15deg);
+    width:0;
+  }
+  
+  .speech0:after {
+    border:solid 10px transparent;
+    border-left:solid 10px #fff;
+    border-top:solid 10px #fff;
+    bottom:-19px;
+    content:"";
+    height:0;
+    left:27px;
+    position:absolute;
+    transform:skew(-15deg);
+    width:0;
+  }
+
+.speech1 {
+    background-color:#fff;
+    border:solid 2px #000;
+    border-radius:12px;
+    display:inline-block;
+    margin:.5em;
+    padding: 7.0em 12.0em;
+    position: absolute;
+    right: 150px;
+    bottom: 250px;
+    font-family: "Bangers";
+  }
+
+  .speech1:before {
+    border:solid 12px transparent;
+    border-left:solid 12px #000;
+    border-top:solid 12px #000;
+    bottom:-24px;
+    content:"";
+    height:0;
+    right:24px;
+    position:absolute;
+    transform:skew(50deg);
+    width:0;
+  }
+  
+  .speech1:after {
+    border:solid 10px transparent;
+    border-left:solid 10px #fff;
+    border-top:solid 10px #fff;
+    bottom:-19px;
+    content:"";
+    height:0;
+    right:27px;
+    position:absolute;
+    transform:skew(50deg);
+    width:0;
+  }
+
+  .blueRound1Voting {
+	position: absolute;
+	background-color: transparent;
+	width: 150px;
+	height: 200px;
+	left: 60px;
+	bottom: 40px;
+}
+
+.redRound1Voting {
+	position: absolute;
+	background-color: transparent;
+	width: 150px;
+	height: 200px;
+	right: 60px;
+	bottom: 40px;
+}

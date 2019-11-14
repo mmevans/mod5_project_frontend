@@ -2,9 +2,9 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import './userHomepage.css'
 import {goToLobby, generateRoomID } from '../../actions/joinRoomActions'
+import { Button, Icon } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css';
 import {Redirect} from 'react-router-dom'
-import io from 'socket.io-client';
-import Timer from '../Timer/Timer'
 
 export const UserHomepage = (props) => {
     const dispatch = useDispatch();
@@ -24,10 +24,14 @@ export const UserHomepage = (props) => {
         <div className='userHomeContainer'>
             <div className='middle'>
                 <div className='createLobby'>
-                    <h3 onClick={() => handleChange()}>Create A Lobby Here!</h3>
+                <Button inverted color='orange' onClick={() => handleChange()}>
+                    Create Your Lobby!
+                </Button>
                 </div>
                 <div className='createCollection'>
-                    <h3>Make your own Collection!</h3>
+                <Button inverted color='green'>
+                    Create Your Own Deck!
+                </Button>
                 </div>
             </div>
         </div>

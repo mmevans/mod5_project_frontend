@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import { Form, Button } from 'semantic-ui-react'
 import {useDispatch, useSelector} from 'react-redux'
 import {setName, setRoom} from '../../actions/joinRoomActions'
+import './joinRoom.css'
+
+
+
 
 export const JoinRoom = (props) => {
     

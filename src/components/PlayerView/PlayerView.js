@@ -1,101 +1,130 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
+import PlayerVotingScreen from './PlayerVotingScreen'
 import io from 'socket.io-client';
-import {setStage} from '../../actions/gameActions'
-import {setPrompts} from '../../actions/playerActions'
+import {setStage, updateAnswersForVoting, goToNextQuestion} from '../../actions/gameActions'
+import {getPlayerInfo, addPlayerAnswers, updateAnswersToState} from '../../actions/playerActions'
+import {Form, TextArea, Button} from 'semantic-ui-react'
+import queryString from 'query-string';
+import './PlayerView.css'
+import socket from '../socket/socket'
 
-
-let socket;
-const ENDPOINT = 'localhost:3000'
 
 export const PlayerView = (props) => {
+    const {name, room, lobby} = queryString.parse(props.location.search)
 
     const dispatch = useDispatch();
-    const room = useSelector(state => state.joinRoom.room_id)
     const stage = useSelector(state => state.game.stage);
-    const playerName = useSelector(state => state.joinRoom.name)
     const prompt1 = useSelector(state => state.player.prompt1)
     const prompt2 = useSelector(state => state.player.prompt2)
     const prompt3 = useSelector(state => state.player.prompt3)
     const prompt4 = useSelector(state => state.player.prompt4)
     const prompt5 = useSelector(state => state.player.prompt5)
     const prompt6 = useSelector(state => state.player.prompt6)
+    const answers_round_1 = useSelector(state => state.player.answers_round_1)
+    const answers_round_2 = useSelector(state => state.player.answers_round_2)
+    const answers_round_3 = useSelector(state => state.player.answers_round_3)
 
-
-    useEffect(() => {
-        props.players.forEach((player) => {
-            if(player.name === playerName) {
-                dispatch(setPrompts(player))
-            }
-        })
-    }, [])
-
+    const questions_round_1 = useSelector(state => state.game.questions_round_1)
+    const selectedQuestion = useSelector(state => state.game.selectedQuestion)
 
     useEffect(() => {
-        console.log('does this hit?')
         const timer = setTimeout(() => {
-          dispatch(setStage())
-        }, 5000);
+        dispatch(setStage())
+        dispatch(getPlayerInfo(name, room))
+        }, 20000);
+
+        socket.on('ready-to-vote', ({ allPlayersInGame, selectedQuestion }) => {
+            dispatch(updateAnswersForVoting(allPlayersInGame, selectedQuestion))
+            dispatch(setStage())
+        })
+
+
         return () => clearTimeout(timer);
       }, []);
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        let answers_round_1 = [];
         if(stage === 2) {
+            dispatch(updateAnswersToState(e.target[0].value, stage))
             dispatch(setStage())
-            answers_round_1.push(e.target.answer.value)
+            e.target.reset()
         }
         if(stage === 3) {
-            answers_round_1.push(e.target.answer2.value)
-            socket.emit('send-answers-to-host', {answers_round_1,room, playerName}, () => {})
+            dispatch(updateAnswersToState(e.target[0].value, stage))
             dispatch(setStage())
         }
     }
 
+    useEffect(() => {
+        if(answers_round_1.length === 2) {
+            dispatch(addPlayerAnswers(name, room, stage, answers_round_1))
+        }
+     
+    }, [answers_round_1])
+
+    useEffect(() => {
+        socket.on('cast-go-to-next-question', () => {
+            dispatch(goToNextQuestion())
+        })
+    })
+
     if(stage === 1) {
         return (
-            <div>
+            <div className='playerViewPage'>
                 <h1>Get Ready!</h1>
             </div>
         )
     }
     if(stage === 2) {
         return (
-            <div>
-                <h1>{prompt1}</h1> 
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <textarea row='4' cols='50' name='answer1'>
-                    </textarea>
-                    <button>Next Question!</button>
-                </form>
+        <div>
+            <div className='playerQuestionForm'>
+                <h1>{prompt1 !== undefined ? prompt1 : null}</h1>
+                    <Form onSubmit={(e) => handleSubmit(e)}>
+                        <TextArea placeholder='Answer'/>
+                        <Button fluid color='red'>Next Question</Button>
+                    </Form>
             </div>
+            <div className='playerScreenFriend'>
+                <img src='https://jackboxgames.com/wp-content/uploads/2019/07/Blue.gif' alt='happy quiplash guy'></img>
+            </div>
+        </div>
         )  
     }
     if(stage === 3) {
         return (
             <div>
-            <h1>{prompt2}</h1> 
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <textarea row='4' cols='50' name='answer2'>
-                </textarea>
-                <button>Submit</button>
-            </form>
-        </div> 
+            <div className='playerQuestionForm'>
+                <h1>{prompt2 !== undefined ? prompt2 : null}</h1>
+                    <Form onSubmit={(e) => handleSubmit(e)}>
+                        <TextArea placeholder='Answer'/>
+                        <Button fluid color='red'>Submit</Button>
+                    </Form>
+            </div>
+            <div className='playerScreenFriend'>
+                <img src='https://jackboxgames.com/wp-content/uploads/2019/07/Blue.gif' alt='happy quiplash guy'></img>
+            </div>
+        </div>
         )
     }
     if(stage === 4) {
         return (
-            <div>
-                <h2>Waiting on other players...</h2>
+            <div class='waitingScreenInGame'>
+                <h2>Waiting on other players</h2>
             </div>
+        )
+    }
+    if(stage === 5) {
+        return (
+            <PlayerVotingScreen questions_round_1={questions_round_1} selectedQuestion={selectedQuestion} room={room}/>
         )
     }
     return (
         <div>
             <h1>Get Ready!</h1> 
         </div>
+        //STYLE THIS SHIT
     )
 }
 
